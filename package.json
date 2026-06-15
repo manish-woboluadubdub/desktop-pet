@@ -1,0 +1,12 @@
+{
+  "name": "desktop-pet",
+  "version": "1.0.0",
+  "description": "A small desktop pet that stays on top of all apps",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}
