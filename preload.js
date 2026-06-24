@@ -26,5 +26,8 @@ contextBridge.exposeInMainWorld('petAPI', {
   onResetNeeds: (callback) => {
     ipcRenderer.on('reset-needs', () => callback());
   },
-  updatePetName: (newName) => ipcRenderer.send('update-pet-name', newName)
+  updatePetName: (newName) => ipcRenderer.send('update-pet-name', newName),
+  onDisplayChanged: (callback) => {
+    ipcRenderer.on('display-changed', () => callback());
+  }
 });

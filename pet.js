@@ -790,6 +790,20 @@ function setupEventListeners() {
     updateNeedsUI();
     addChatMessage('System', 'Pet needs have been reset!', 'pet-msg');
   });
+
+  // Re-calculate screen boundaries and reposition pet on resolution or monitor changes
+  window.petAPI.onDisplayChanged(async () => {
+    screenBounds = await window.petAPI.getScreenBounds();
+    if (mode === MODE.SLEEP) {
+      const corner = getCornerPosition();
+      posX = corner.x;
+      posY = corner.y;
+      window.petAPI.movePet(posX, posY);
+    } else {
+      clampPosition();
+      window.petAPI.movePet(posX, posY);
+    }
+  });
 }
 
 // Main execution loop

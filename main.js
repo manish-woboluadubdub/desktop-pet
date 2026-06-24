@@ -338,6 +338,16 @@ ipcMain.handle('send-gemini-message', async (_event, { prompt, petName, history 
 app.whenReady().then(() => {
   createPetWindow();
   createTray();
+
+  // Listen to screen/monitor changes and notify renderer to update bounds
+  const handleDisplayChange = () => {
+    if (petWindow) {
+      petWindow.webContents.send('display-changed');
+    }
+  };
+  screen.on('display-added', handleDisplayChange);
+  screen.on('display-removed', handleDisplayChange);
+  screen.on('display-metrics-changed', handleDisplayChange);
 });
 
 app.on('window-all-closed', () => {
