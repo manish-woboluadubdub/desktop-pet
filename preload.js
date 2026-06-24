@@ -11,4 +11,20 @@ contextBridge.exposeInMainWorld('petAPI', {
   onCursorMove: (callback) => {
     ipcRenderer.on('cursor-move', (_event, point) => callback(point));
   },
+  
+  // Custom Pet APIs
+  getPlugins: () => ipcRenderer.invoke('get-plugins'),
+  onPluginChanged: (callback) => {
+    ipcRenderer.on('plugin-changed', (_event, pluginId) => callback(pluginId));
+  },
+  resizeWindow: (width, height) => ipcRenderer.send('resize-window', { width, height }),
+  setCursorTracking: (active) => ipcRenderer.send('set-cursor-tracking', active),
+  sendGeminiMessage: (prompt, petName, history) => ipcRenderer.invoke('send-gemini-message', { prompt, petName, history }),
+  onOpenChat: (callback) => {
+    ipcRenderer.on('open-chat', () => callback());
+  },
+  onResetNeeds: (callback) => {
+    ipcRenderer.on('reset-needs', () => callback());
+  },
+  updatePetName: (newName) => ipcRenderer.send('update-pet-name', newName)
 });

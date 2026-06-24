@@ -1,0 +1,11 @@
+{
+  "id": "classic-cat",
+  "name": "Kitty",
+  "emoji": "🐱",
+  "html": "<div class=\"shadow\"></div><div class=\"body\"><div class=\"ear ear-left\"></div><div class=\"ear ear-right\"></div><div class=\"face\"><div class=\"eye eye-left\"></div><div class=\"eye eye-right\"></div><div class=\"nose\"></div><div class=\"whiskers whiskers-left\"></div><div class=\"whiskers whiskers-right\"></div></div><div class=\"tail\"></div><div class=\"legs\"><div class=\"leg leg-front-left\"></div><div class=\"leg leg-front-right\"></div><div class=\"leg leg-back-left\"></div><div class=\"leg leg-back-right\"></div></div></div>",
+  "config": {
+    "speed": 3,
+    "stopDistance": 40,
+    "idleTimeout": 4000
+  }
+}

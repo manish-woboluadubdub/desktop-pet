@@ -1,0 +1,205 @@
+.alien-slime {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.alien-slime .shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  filter: blur(2px);
+  transition: transform 0.2s;
+}
+
+.alien-slime .body {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 56px;
+  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+  border-radius: 50% 50% 42% 42%;
+  box-shadow: 0 0 15px rgba(0, 255, 135, 0.4), inset -2px -4px 10px rgba(0, 0, 0, 0.15);
+  animation: slime-breathe 2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.alien-slime .eye {
+  position: absolute;
+  top: 18px;
+  width: 14px;
+  height: 14px;
+  background: #1c1c1f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slime-blink 5s infinite;
+}
+
+.alien-slime .eye-left { left: 14px; }
+.alien-slime .eye-right { right: 14px; }
+
+.alien-slime .pupil {
+  width: 5px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+  margin-top: -3px;
+  margin-left: -3px;
+}
+
+.alien-slime .mouth {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  border-bottom: 2.5px solid #1c1c1f;
+  border-radius: 0 0 8px 8px;
+}
+
+.alien-slime .antenna {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 14px;
+  background: #00ff87;
+}
+
+.alien-slime .bulb {
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  width: 12px;
+  height: 12px;
+  background: #60efff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #60efff;
+  animation: bulb-glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Facing */
+.pet[data-facing="left"] .alien-slime .body {
+  transform: translateX(-50%) scaleX(-1);
+}
+
+/* States & Custom Animations */
+.pet.walk .alien-slime .body {
+  animation: slime-hop 0.5s ease-in-out infinite;
+}
+
+.pet.walk .alien-slime .shadow {
+  animation: slime-shadow-scale 0.5s ease-in-out infinite;
+}
+
+.pet.sleep .alien-slime .body {
+  height: 38px;
+  width: 76px;
+  border-radius: 60% 60% 40% 40%;
+  animation: slime-sleep-breathe 2.5s ease-in-out infinite;
+}
+
+.pet.sleep .alien-slime .eye {
+  height: 2.5px;
+  border-radius: 1px;
+  top: 24px;
+  animation: none;
+}
+
+.pet.sleep .alien-slime .pupil {
+  display: none;
+}
+
+.pet.sleep .alien-slime .mouth {
+  border-bottom: 2px solid #1c1c1f;
+  width: 8px;
+  height: 4px;
+  top: 28px;
+}
+
+.pet.sleep .alien-slime .bulb {
+  animation: bulb-dim 2.5s ease-in-out infinite;
+  box-shadow: none;
+  background: #1e707a;
+}
+
+.pet.dragging .alien-slime .body {
+  animation: slime-drag 0.2s forwards;
+}
+
+.pet.hit .alien-slime .body {
+  animation: slime-hit-shake 0.2s ease;
+}
+
+/* Mood modifications using CSS variables or classes */
+.pet.angry .alien-slime .body {
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+  box-shadow: 0 0 15px rgba(255, 8, 68, 0.6), inset -2px -4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.pet.angry .alien-slime .bulb {
+  background: #ff0844;
+  box-shadow: 0 0 10px #ff0844;
+}
+
+/* Animations */
+@keyframes slime-breathe {
+  0%, 100% { transform: translateX(-50%) scale(1, 1); }
+  50% { transform: translateX(-50%) scale(1.05, 0.95); }
+}
+
+@keyframes slime-sleep-breathe {
+  0%, 100% { transform: translateX(-50%) scale(1, 1); }
+  50% { transform: translateX(-50%) scale(1.03, 0.93); }
+}
+
+@keyframes slime-blink {
+  0%, 95%, 100% { transform: scaleY(1); }
+  97.5% { transform: scaleY(0.1); }
+}
+
+@keyframes bulb-glow {
+  from { transform: scale(0.9); opacity: 0.8; }
+  to { transform: scale(1.1); opacity: 1; box-shadow: 0 0 14px #60efff; }
+}
+
+@keyframes bulb-dim {
+  0%, 100% { transform: scale(0.85); opacity: 0.4; }
+  50% { transform: scale(0.9); opacity: 0.6; }
+}
+
+@keyframes slime-hop {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1.1, 0.8); }
+  35% { transform: translateX(-50%) translateY(-14px) scale(0.85, 1.25); }
+  50% { transform: translateX(-50%) translateY(-16px) scale(0.9, 1.15); }
+  65% { transform: translateX(-50%) translateY(-12px) scale(0.95, 1.05); }
+  85% { transform: translateX(-50%) translateY(0) scale(1.05, 0.9); }
+}
+
+@keyframes slime-shadow-scale {
+  0%, 100% { transform: translateX(-50%) scale(1.1); opacity: 0.3; }
+  50% { transform: translateX(-50%) scale(0.6); opacity: 0.1; }
+}
+
+@keyframes slime-drag {
+  to { transform: translateX(-50%) scale(0.8, 1.3); }
+}
+
+@keyframes slime-hit-shake {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  20% { transform: translateX(calc(-50% - 6px)) scale(1.1, 0.9); }
+  40% { transform: translateX(calc(-50% + 6px)) scale(0.9, 1.1); }
+  60% { transform: translateX(calc(-50% - 4px)) scale(1.05, 0.95); }
+  80% { transform: translateX(calc(-50% + 4px)) scale(0.98, 1.02); }
+}

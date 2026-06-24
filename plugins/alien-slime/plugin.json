@@ -1,0 +1,11 @@
+{
+  "id": "alien-slime",
+  "name": "Cosmic Slime",
+  "emoji": "👾",
+  "html": "<div class=\"shadow\"></div><div class=\"body\"><div class=\"eye eye-left\"><div class=\"pupil\"></div></div><div class=\"eye eye-right\"><div class=\"pupil\"></div></div><div class=\"mouth\"></div><div class=\"antenna\"><div class=\"bulb\"></div></div></div>",
+  "config": {
+    "speed": 2.2,
+    "stopDistance": 30,
+    "idleTimeout": 5000
+  }
+}

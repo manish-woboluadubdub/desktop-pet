@@ -1,0 +1,223 @@
+.classic-cat .shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.classic-cat .body {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 58px;
+  background: linear-gradient(145deg, #ffb347 0%, #ff8c42 100%);
+  border-radius: 45% 45% 40% 40%;
+  box-shadow: inset -4px -6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.classic-cat .ear {
+  position: absolute;
+  top: -14px;
+  width: 22px;
+  height: 26px;
+  background: #ff8c42;
+  border-radius: 50% 50% 10% 10%;
+}
+
+.classic-cat .ear-left { left: 6px; transform: rotate(-12deg); }
+.classic-cat .ear-right { right: 6px; transform: rotate(12deg); }
+
+.classic-cat .ear::after {
+  content: '';
+  position: absolute;
+  inset: 6px 5px 8px;
+  background: #ffb8a0;
+  border-radius: 50% 50% 10% 10%;
+}
+
+.classic-cat .face {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 34px;
+}
+
+.classic-cat .eye {
+  position: absolute;
+  top: 4px;
+  width: 10px;
+  height: 12px;
+  background: #2d2d2d;
+  border-radius: 50%;
+  animation: cat-blink 4s infinite;
+}
+
+.classic-cat .eye-left { left: 8px; }
+.classic-cat .eye-right { right: 8px; }
+
+.classic-cat .eye::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+}
+
+.classic-cat .nose {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 6px;
+  background: #e06b6b;
+  border-radius: 40% 40% 50% 50%;
+}
+
+.classic-cat .whiskers {
+  position: absolute;
+  top: 20px;
+  width: 18px;
+  height: 1px;
+  background: rgba(80, 40, 20, 0.35);
+}
+
+.classic-cat .whiskers::before,
+.classic-cat .whiskers::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 1px;
+  background: rgba(80, 40, 20, 0.35);
+}
+
+.classic-cat .whiskers::before { top: -5px; transform: rotate(-8deg); }
+.classic-cat .whiskers::after { top: 5px; transform: rotate(8deg); }
+
+.classic-cat .whiskers-left { left: -12px; }
+.classic-cat .whiskers-right { right: -12px; transform: scaleX(-1); }
+
+.classic-cat .tail {
+  position: absolute;
+  right: -18px;
+  bottom: 10px;
+  width: 28px;
+  height: 10px;
+  background: #ff8c42;
+  border-radius: 10px;
+  transform-origin: left center;
+  animation: cat-wag 1.2s ease-in-out infinite;
+}
+
+.classic-cat .legs {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 16px;
+}
+
+.classic-cat .leg {
+  position: absolute;
+  bottom: 0;
+  width: 12px;
+  height: 16px;
+  background: #ff8c42;
+  border-radius: 6px 6px 4px 4px;
+}
+
+.classic-cat .leg-front-left { left: 10px; }
+.classic-cat .leg-front-right { left: 26px; }
+.classic-cat .leg-back-left { right: 26px; }
+.classic-cat .leg-back-right { right: 10px; }
+
+/* Facing */
+.pet[data-facing="left"] .classic-cat .body,
+.pet[data-facing="left"] .classic-cat .tail {
+  transform: translateX(-50%) scaleX(-1);
+}
+
+.pet[data-facing="left"] .classic-cat .tail {
+  transform-origin: right center;
+  right: auto;
+  left: -18px;
+}
+
+/* States */
+.pet.walk .classic-cat .leg-front-left { animation: cat-step 0.35s infinite; }
+.pet.walk .classic-cat .leg-front-right { animation: cat-step 0.35s infinite 0.175s; }
+.pet.walk .classic-cat .leg-back-left { animation: cat-step 0.35s infinite 0.175s; }
+.pet.walk .classic-cat .leg-back-right { animation: cat-step 0.35s infinite; }
+
+.pet.walk .classic-cat .body {
+  animation: cat-bob 0.35s ease-in-out infinite;
+}
+
+.pet.sleep .classic-cat .eye {
+  height: 3px;
+  top: 8px;
+  border-radius: 2px;
+  animation: none;
+}
+
+.pet.sleep .classic-cat .eye::after {
+  display: none;
+}
+
+.pet.sleep .classic-cat .tail {
+  animation: none;
+  transform: rotate(-20deg);
+}
+
+.pet.dragging .classic-cat .body {
+  animation: cat-lift 0.3s ease forwards;
+}
+
+.pet.hit .classic-cat .body {
+  animation: cat-hit-shake 0.18s ease;
+}
+
+/* Animations */
+@keyframes cat-blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98% { transform: scaleY(0.1); }
+}
+
+@keyframes cat-wag {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(18deg); }
+}
+
+@keyframes cat-step {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes cat-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+@keyframes cat-lift {
+  to { transform: translateX(-50%) translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes cat-hit-shake {
+  0%, 100% { transform: translateX(-50%); }
+  25% { transform: translateX(calc(-50% - 5px)) rotate(-4deg); }
+  75% { transform: translateX(calc(-50% + 5px)) rotate(4deg); }
+}

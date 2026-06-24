@@ -5,30 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desktop Pet</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Dynamic link to load active plugin stylesheet -->
+  <link id="plugin-style" rel="stylesheet" href="">
 </head>
 <body>
-  <div id="pet" class="pet idle" data-facing="right">
-    <div class="shadow"></div>
-    <div class="body">
-      <div class="ear ear-left"></div>
-      <div class="ear ear-right"></div>
-      <div class="face">
-        <div class="eye eye-left"></div>
-        <div class="eye eye-right"></div>
-        <div class="nose"></div>
-        <div class="whiskers whiskers-left"></div>
-        <div class="whiskers whiskers-right"></div>
+  <div id="app-container">
+    <!-- Chat panel overlay -->
+    <div id="chat-container" class="hidden">
+      <div class="chat-header">
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <span id="chat-pet-name" class="chat-title">Chat with Pet</span>
+          <button id="edit-pet-name-btn" title="Rename Pet" style="background: none; border: none; cursor: pointer; font-size: 11px; outline: none; padding: 2px; transition: transform 0.2s;">✏️</button>
+        </div>
+        <button id="close-chat">×</button>
       </div>
-      <div class="tail"></div>
-      <div class="legs">
-        <div class="leg leg-front-left"></div>
-        <div class="leg leg-front-right"></div>
-        <div class="leg leg-back-left"></div>
-        <div class="leg leg-back-right"></div>
+      <div id="chat-messages">
+        <div class="message pet-msg">Hello! Double-click me anytime to open this chat! Type below or feed me!</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
+        <button id="send-chat-btn">Send</button>
       </div>
     </div>
-    <div class="bubble hidden">💤</div>
+
+    <!-- Pet element -->
+    <div id="pet" class="pet idle" data-facing="right">
+      <div id="pet-visuals">
+        <!-- Loaded dynamically from plugin JSON -->
+      </div>
+      <div id="pet-bubble" class="bubble hidden">💤</div>
+    </div>
   </div>
+
   <script src="pet.js"></script>
 </body>
 </html>
